@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,16 +27,18 @@ public class PlayerController2 : MonoBehaviour
         InputActions.FindActionMap("Player").Disable();
     }
 
-    private void OnUIEnable() // a
+    private void Pause() // a
     {
         InputActions.FindActionMap("UI").Enable();
+        InputActions.FindActionMap("Player").Disable();
         pauseBg.SetActive(true);
 
     }
 
-    private void OnUIDisable()
+    private void Unpause() 
     {
         InputActions.FindActionMap("UI").Disable();
+        InputActions.FindActionMap("Player").Enable();
         pauseBg.SetActive(false);
     }
 
@@ -45,8 +48,8 @@ public class PlayerController2 : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         fireAction = InputSystem.actions.FindAction("Fire");
         pausePlayerAction = InputSystem.actions.FindAction("PausePlayer");
-        pauseUIAction = InputSystem.actions.FindAction("PauseUI");
-        OnUIDisable();
+        pauseUIAction = InputSystem.actions.FindAction("PauseUI"); // só despausa se o jogo estiver pausado
+        Unpause();
     }
 
     void Update()
@@ -67,14 +70,11 @@ public class PlayerController2 : MonoBehaviour
         }
         if(pausePlayerAction.WasPressedThisFrame())
         {
-            OnDisable();
-            OnUIEnable();
+            Pause();
         }
         if(pauseUIAction.WasPressedThisFrame())
         {
-            OnEnable();
-            OnUIDisable();
-
+            Unpause();
         }
     }
 }
