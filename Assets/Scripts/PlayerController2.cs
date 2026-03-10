@@ -9,13 +9,12 @@ public class PlayerController2 : MonoBehaviour
     public float speed = 20f;
     public float xRange = 15f;
     public GameObject projectilePrefab;
-
     public InputActionAsset InputActions;
     private InputAction moveAction;
     private InputAction fireAction;
     private InputAction pausePlayerAction;
     private InputAction pauseUIAction;
-    private GameObject pauseBg;
+    public GameObject pauseBg;
 
     private void OnEnable()
     {
@@ -32,7 +31,6 @@ public class PlayerController2 : MonoBehaviour
         InputActions.FindActionMap("UI").Enable();
         InputActions.FindActionMap("Player").Disable();
         pauseBg.SetActive(true);
-
     }
 
     private void Unpause() // só é chamada se o jogo estiver pausado
@@ -44,12 +42,10 @@ public class PlayerController2 : MonoBehaviour
 
     private void Awake()
     {
-        pauseBg = GameObject.Find("PauseBackground");
         moveAction = InputSystem.actions.FindAction("Move");
         fireAction = InputSystem.actions.FindAction("Fire");
         pausePlayerAction = InputSystem.actions.FindAction("PausePlayer");
         pauseUIAction = InputSystem.actions.FindAction("PauseUI"); 
-        Unpause();
     }
 
     void Update()
