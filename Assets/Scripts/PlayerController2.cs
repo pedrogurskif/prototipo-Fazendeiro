@@ -26,7 +26,7 @@ public class PlayerController2 : MonoBehaviour
         InputActions.FindActionMap("Player").Disable();
     }
 
-    private void OnUIEnable()
+    private void OnUIEnable() // a
     {
         InputActions.FindActionMap("UI").Enable();
         pauseBg.SetActive(true);
