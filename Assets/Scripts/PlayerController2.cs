@@ -27,7 +27,7 @@ public class PlayerController2 : MonoBehaviour
         InputActions.FindActionMap("Player").Disable();
     }
 
-    private void Pause() // a
+    private void Pause() // só é chamada se o jogo estiver despausado
     {
         InputActions.FindActionMap("UI").Enable();
         InputActions.FindActionMap("Player").Disable();
@@ -35,7 +35,7 @@ public class PlayerController2 : MonoBehaviour
 
     }
 
-    private void Unpause() 
+    private void Unpause() // só é chamada se o jogo estiver pausado
     {
         InputActions.FindActionMap("UI").Disable();
         InputActions.FindActionMap("Player").Enable();
@@ -48,7 +48,7 @@ public class PlayerController2 : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         fireAction = InputSystem.actions.FindAction("Fire");
         pausePlayerAction = InputSystem.actions.FindAction("PausePlayer");
-        pauseUIAction = InputSystem.actions.FindAction("PauseUI"); // só despausa se o jogo estiver pausado
+        pauseUIAction = InputSystem.actions.FindAction("PauseUI"); 
         Unpause();
     }
 
