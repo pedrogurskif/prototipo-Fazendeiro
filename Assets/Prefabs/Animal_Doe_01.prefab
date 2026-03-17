@@ -633,6 +633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   InputActions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
+  animator: {fileID: 3490795014930591350}
 --- !u!114 &1317163829885812727
 MonoBehaviour:
   m_ObjectHideFlags: 0
