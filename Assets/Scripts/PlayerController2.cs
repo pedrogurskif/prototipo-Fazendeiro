@@ -14,6 +14,7 @@ public class PlayerController2 : MonoBehaviour
     private InputAction fireAction;
     private InputAction pausePlayerAction;
     private InputAction pauseUIAction;
+    private InputAction powerAction;
     public GameObject pauseBg;
 
     private void OnEnable()
@@ -46,6 +47,8 @@ public class PlayerController2 : MonoBehaviour
         fireAction = InputSystem.actions.FindAction("Fire");
         pausePlayerAction = InputSystem.actions.FindAction("PausePlayer");
         pauseUIAction = InputSystem.actions.FindAction("PauseUI"); 
+        powerAction = InputSystem.actions.FindAction("Power");
+        Unpause();
     }
 
     void Update()
