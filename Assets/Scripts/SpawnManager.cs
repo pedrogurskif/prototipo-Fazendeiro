@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 public class SpawnManager : MonoBehaviour
@@ -11,27 +10,10 @@ public class SpawnManager : MonoBehaviour
     private float spawnPositionZ = 20f;
     private float startDelay = 2f;
     private float spawnInterval = 1.5f;
-    public InputActionAsset InputActions;
-    private InputAction PausePlayer;
-    private InputAction PauseUI;
 
     void Start()
     {
         InvokeRepeating("SpawnAnimal", startDelay, spawnInterval);
-        PausePlayer = InputSystem.actions.FindAction("PausePlayer");
-        PauseUI = InputSystem.actions.FindAction("PauseUI"); 
-    }
-
-    void Update()
-    {
-        if(PausePlayer.WasPressedThisFrame())
-        {
-            Pause();
-        }
-        if(PauseUI.WasPressedThisFrame())
-        {
-            Unpause();
-        }
     }
 
     void SpawnAnimal()
@@ -44,15 +26,5 @@ public class SpawnManager : MonoBehaviour
 
         Instantiate(animalPrefabs[animalIndex], randomPosition,
          animalPrefabs[animalIndex].transform.rotation);
-    }
-
-    void Pause()
-    {
-        CancelInvoke("SpawnAnimal");
-    }
-
-    void Unpause()
-    {
-        InvokeRepeating("SpawnAnimal", startDelay, spawnInterval);
     }
 }

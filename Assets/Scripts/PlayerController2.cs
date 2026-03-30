@@ -16,8 +16,10 @@ public class PlayerController2 : MonoBehaviour
     private InputAction pausePlayerAction;
     private InputAction pauseUIAction;
     private InputAction powerAction;
+    private Coroutine ultimateCR;
     public GameObject pauseBg;
-    public GameObject car;
+    public GameObject powerCar;
+    public GameObject standardCar;
     int hp = 3;
 
     private void OnEnable()
@@ -34,6 +36,7 @@ public class PlayerController2 : MonoBehaviour
     {
         InputActions.FindActionMap("UI").Enable();
         InputActions.FindActionMap("Player").Disable();
+        Time.timeScale = 0f;
         pauseBg.SetActive(true);
     }
 
@@ -41,6 +44,7 @@ public class PlayerController2 : MonoBehaviour
     {
         InputActions.FindActionMap("UI").Disable();
         InputActions.FindActionMap("Player").Enable();
+        Time.timeScale = 1f;
         pauseBg.SetActive(false);
     }
 
@@ -82,7 +86,7 @@ public class PlayerController2 : MonoBehaviour
 
         if(ultimateAction.WasPressedThisFrame())
         {
-            Ultimate();
+            ultimateCR = StartCoroutine(Ultimate());
         }
     }
 
@@ -91,9 +95,14 @@ public class PlayerController2 : MonoBehaviour
         Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
     }
 
-    void Ultimate()
+    IEnumerator Ultimate()
     {
-        Instantiate(car, new Vector3(45, 0, 12), Quaternion.identity);
+        Instantiate(standardCar, new Vector3(45, 0, 12), Quaternion.identity);
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(powerCar, new Vector3(45, 0, 12), Quaternion.identity);
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(standardCar, new Vector3(45, 0, 12), Quaternion.identity);
+        StopCoroutine(ultimateCR);
     }
 
     public void Heal()

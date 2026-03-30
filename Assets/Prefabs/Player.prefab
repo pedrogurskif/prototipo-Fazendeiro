@@ -568,7 +568,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3368550998252044939, guid: 3e72a3cfb85b1344ca8ceae8fa56d1d4, type: 3}
   InputActions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   pauseBg: {fileID: 0}
-  car: {fileID: 8663673574762740106, guid: 3f83a5a9639ce0249ac0d7df9b8c40b9, type: 3}
+  powerCar: {fileID: 8663673574762740106, guid: 0eb11c2aaf5ccbf4885989abecc2b925, type: 3}
+  standardCar: {fileID: 8663673574762740106, guid: 3f83a5a9639ce0249ac0d7df9b8c40b9, type: 3}
 --- !u!114 &7155607586716847835
 MonoBehaviour:
   m_ObjectHideFlags: 0

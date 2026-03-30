@@ -18,10 +18,13 @@ public class UltimateScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        timer += Time.deltaTime;
-        if(timer > 5)
+        if(gameObject.name.Contains("Food"))
         {
-            Hello();
+            timer += Time.deltaTime;
+            if(timer > 5)
+            {
+                Hello();
+            }
         }
     }
 
