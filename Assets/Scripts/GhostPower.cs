@@ -18,34 +18,41 @@ public class GhostPower : MonoBehaviour
         fireAction = InputSystem.actions.FindAction("Fire");
     }
 
-    void Update()
+    void Start()
     {
-        Ghost();
-        if(timer > 2)
-        {
-            timer = 2;
-        }
+        StartCoroutine(GhostCoroutine());
     }
 
-    void Ghost()
+    private IEnumerator GhostCoroutine()
     {
-        if(powerAction.IsPressed() && timer >= 0f)
+        while(true)
         {
-            playerModel.SetActive(false);
-            timer -= Time.deltaTime;
-            fireAction.Disable();
-            print(timer);
-        }
-        if(!powerAction.IsPressed() || timer < 0f)
-        {
-            playerModel.SetActive(true);
-            fireAction.Enable();
-            Regeneration();
+            if(powerAction.IsPressed() && timer >= 0f)
+            {
+                playerModel.SetActive(false);
+                timer -= Time.deltaTime;
+                fireAction.Disable();
+                print(timer);
+            }
+            if(!powerAction.IsPressed() || timer < 0f)
+            {
+                playerModel.SetActive(true);
+                fireAction.Enable();
+                Regeneration();
+            }
+            yield return null;
         }
     }
 
     void Regeneration()
     {
-        timer += Time.deltaTime;
+        if(timer <= 2f)
+        {
+            timer += Time.deltaTime;
+        }
+        if(timer > 2f)
+        {
+            timer = 2f;
+        }
     }
 }

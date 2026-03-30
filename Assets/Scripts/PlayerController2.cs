@@ -12,10 +12,13 @@ public class PlayerController2 : MonoBehaviour
     public InputActionAsset InputActions;
     private InputAction moveAction;
     private InputAction fireAction;
+    private InputAction ultimateAction;
     private InputAction pausePlayerAction;
     private InputAction pauseUIAction;
     private InputAction powerAction;
     public GameObject pauseBg;
+    public GameObject car;
+    int hp = 3;
 
     private void OnEnable()
     {
@@ -48,6 +51,7 @@ public class PlayerController2 : MonoBehaviour
         pausePlayerAction = InputSystem.actions.FindAction("PausePlayer");
         pauseUIAction = InputSystem.actions.FindAction("PauseUI"); 
         powerAction = InputSystem.actions.FindAction("Power");
+        ultimateAction = InputSystem.actions.FindAction("Ultimate");
         Unpause();
     }
 
@@ -65,7 +69,7 @@ public class PlayerController2 : MonoBehaviour
         }
         if(fireAction.WasPressedThisFrame())
         {
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+            Shoot();
         }
         if(pausePlayerAction.WasPressedThisFrame())
         {
@@ -74,6 +78,29 @@ public class PlayerController2 : MonoBehaviour
         if(pauseUIAction.WasPressedThisFrame())
         {
             Unpause();
+        }
+
+        if(ultimateAction.WasPressedThisFrame())
+        {
+            Ultimate();
+        }
+    }
+
+    void Shoot()
+    {
+        Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+    }
+
+    void Ultimate()
+    {
+        Instantiate(car, new Vector3(45, 0, 12), Quaternion.identity);
+    }
+
+    public void Heal()
+    {
+        if(hp<3)
+        {
+            hp++;
         }
     }
 }
