@@ -20,6 +20,8 @@ public class PlayerController2 : MonoBehaviour
     public GameObject pauseBg;
     public GameObject powerCar;
     public GameObject standardCar;
+    private Vector3 spawnLocation = new Vector3(45, 0, 12);
+    private float spawnInterval = 0;
     int hp = 3;
 
     private void OnEnable()
@@ -97,11 +99,13 @@ public class PlayerController2 : MonoBehaviour
 
     IEnumerator Ultimate()
     {
-        Instantiate(standardCar, new Vector3(45, 0, 12), Quaternion.identity);
-        yield return new WaitForSeconds(1.5f);
-        Instantiate(powerCar, new Vector3(45, 0, 12), Quaternion.identity);
-        yield return new WaitForSeconds(1.5f);
-        Instantiate(standardCar, new Vector3(45, 0, 12), Quaternion.identity);
+        Instantiate(standardCar, spawnLocation, Quaternion.identity);
+        spawnInterval = Random.Range(1.3f, 2f);
+        yield return new WaitForSeconds(spawnInterval);
+        Instantiate(powerCar, spawnLocation, Quaternion.identity);
+        spawnInterval = Random.Range(1.3f, 2f);
+        yield return new WaitForSeconds(spawnInterval);
+        Instantiate(standardCar, spawnLocation, Quaternion.identity);
         StopCoroutine(ultimateCR);
     }
 

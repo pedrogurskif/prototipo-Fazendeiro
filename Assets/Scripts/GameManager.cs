@@ -1,16 +1,33 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject confirmSairHUD, creditosHUD;
+    public void Jogar()
     {
-        
+        SceneManager.LoadScene("Level1");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Creditos()
     {
-        
+        creditosHUD.SetActive(true);
+    }
+
+    public void Voltar()
+    {
+        creditosHUD.SetActive(false);
+        confirmSairHUD.SetActive(false);
+    }
+
+    public void Sair()
+    {
+        confirmSairHUD.SetActive(true);
+    }
+
+    public void ConfirmSair()
+    {
+        Debug.Log("saiu do jogo");
+        Application.Quit();
     }
 }
