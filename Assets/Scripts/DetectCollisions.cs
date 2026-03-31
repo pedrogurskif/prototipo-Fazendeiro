@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject farmer;
+    private PlayerController2 player;
     void Start()
     {
-        
+        player = farmer.GetComponent<PlayerController2>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -20,8 +20,16 @@ public class DetectCollisions : MonoBehaviour
     {
         if(other.tag == "Animal")
         {
-            Destroy(gameObject);
-            Destroy(other.gameObject);
+            if(gameObject.name.Contains("Pizza"))
+            {
+                Destroy(gameObject);
+                Destroy(other.gameObject);
+            }
+            if(gameObject.tag == "Player")
+            {
+                player.Health(-1);
+            }
         }
+        
     }
 }

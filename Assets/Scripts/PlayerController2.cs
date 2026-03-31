@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController2 : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerController2 : MonoBehaviour
     public float xRange = 15f;
     public GameObject projectilePrefab;
     public InputActionAsset InputActions;
+    public GameObject gameOverHUD;
+    public GameObject heart1, heart2, heart3;
     private InputAction moveAction;
     private InputAction fireAction;
     private InputAction ultimateAction;
@@ -109,11 +112,33 @@ public class PlayerController2 : MonoBehaviour
         StopCoroutine(ultimateCR);
     }
 
-    public void Heal()
+    public void Health(int change)
     {
-        if(hp<3)
+        hp += change;
+        if(hp>3)
         {
-            hp++;
+            hp = 3;
+        }
+        if(hp==3)
+        {
+            heart3.SetActive(true);
+        }
+        else if(hp==2)
+        {
+            heart3.SetActive(false);
+            heart2.SetActive(true);
+        }
+        else if(hp==1)
+        {
+            heart2.SetActive(false);
+            heart1.SetActive(true);
+        }
+        else if(hp==0)
+        {
+            heart1.SetActive(false);
+            Time.timeScale = 0;
+            gameObject.SetActive(false);
+            gameOverHUD.SetActive(true);
         }
     }
 }

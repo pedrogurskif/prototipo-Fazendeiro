@@ -18,9 +18,9 @@ public class CookieScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag.Contains("Player"))
         {
-            playerCode.Heal();
+            playerCode.Health(1);
             Destroy(gameObject);
         }
     }

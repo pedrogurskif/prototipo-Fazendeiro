@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 2468148037618812111}
   m_Layer: 0
   m_Name: Animal_Doe_01
-  m_TagString: Animal
+  m_TagString: Undefined
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

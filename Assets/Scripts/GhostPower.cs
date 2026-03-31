@@ -11,7 +11,6 @@ public class GhostPower : MonoBehaviour
     private InputAction fireAction;
     [SerializeField] private float timer = 2f;
     public GameObject playerModel;
-
     void Awake()
     {
         powerAction = InputSystem.actions.FindAction("Power");
@@ -29,6 +28,7 @@ public class GhostPower : MonoBehaviour
         {
             if(powerAction.IsPressed() && timer >= 0f)
             {
+                gameObject.tag = "PlayerGhost";
                 playerModel.SetActive(false);
                 timer -= Time.deltaTime;
                 fireAction.Disable();
@@ -36,6 +36,7 @@ public class GhostPower : MonoBehaviour
             }
             if(!powerAction.IsPressed() || timer < 0f)
             {
+                gameObject.tag = "Player";
                 playerModel.SetActive(true);
                 fireAction.Enable();
                 Regeneration();
