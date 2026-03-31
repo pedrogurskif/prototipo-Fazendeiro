@@ -475,6 +475,7 @@ MonoBehaviour:
   carhorn: {fileID: 2349848064200330387, guid: 87996838c06d7874682fc07c20cb998b, type: 3}
   healing: {fileID: 100000, guid: 10d25933610222845ad3760a855829c4, type: 3}
   timer: 0
+  score: {fileID: 4834597490967343989, guid: d95c8ea389f405943abf7dd1719994ec, type: 3}
 --- !u!65 &9127696141708695088
 BoxCollider:
   m_ObjectHideFlags: 0

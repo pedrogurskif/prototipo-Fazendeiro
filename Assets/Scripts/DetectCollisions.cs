@@ -6,17 +6,16 @@ public class DetectCollisions : MonoBehaviour
 {
     public GameObject farmer;
     private PlayerController2 player;
+    private GameObject score;
+    private ScoreText scoreText;
     void Start()
     {
         player = farmer.GetComponent<PlayerController2>();
+        score = GameObject.Find("ScoreText");
+        scoreText = score.GetComponent<ScoreText>();
     }
 
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.tag == "Animal")
         {
@@ -24,10 +23,13 @@ public class DetectCollisions : MonoBehaviour
             {
                 Destroy(gameObject);
                 Destroy(other.gameObject);
+                scoreText.Score(1);
             }
             if(gameObject.tag == "Player")
             {
                 player.Health(-1);
+                scoreText.Score(1);
+                Destroy(other.gameObject);
             }
         }
         

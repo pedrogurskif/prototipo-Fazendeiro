@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farmer: {fileID: 100046, guid: 3cf7f489270aac84fb12901330960a5b, type: 3}
+  score: {fileID: 5913194042554367616, guid: be2e51feb80668e448c3dd702d7aac59, type: 3}
 --- !u!95 &-6408460150720013894
 Animator:
   serializedVersion: 7

@@ -5,10 +5,14 @@ public class UltimateScript : MonoBehaviour
     public GameObject target, carhorn, healing;
     public float timer = 0;
     private int help = 0;
+    private GameObject score;
+    private ScoreText scoreText;
     void Start()
     {
         Destroy(gameObject, 10);
         transform.LookAt(target.transform.position);
+        score = GameObject.Find("ScoreText");
+        scoreText = score.GetComponent<ScoreText>();
     }
 
     void Update()
@@ -49,5 +53,6 @@ public class UltimateScript : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        scoreText.Score(1);
     }
 }

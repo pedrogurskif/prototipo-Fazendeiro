@@ -26,6 +26,7 @@ public class PlayerController2 : MonoBehaviour
     private Vector3 spawnLocation = new Vector3(45, 0, 12);
     private float spawnInterval = 0;
     int hp = 3;
+    private float ultimateCD = 0;
 
     private void OnEnable()
     {
@@ -66,6 +67,7 @@ public class PlayerController2 : MonoBehaviour
 
     void Update()
     {
+        ultimateCD -= Time.deltaTime;
         float horizontalInput = moveAction.ReadValue<Vector2>().x;
         transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
         if(transform.position.x < -xRange)
@@ -91,7 +93,11 @@ public class PlayerController2 : MonoBehaviour
 
         if(ultimateAction.WasPressedThisFrame())
         {
-            ultimateCR = StartCoroutine(Ultimate());
+            if(ultimateCD <= 0)
+            {
+                ultimateCR = StartCoroutine(Ultimate());
+                ultimateCD = 20;
+            }
         }
     }
 

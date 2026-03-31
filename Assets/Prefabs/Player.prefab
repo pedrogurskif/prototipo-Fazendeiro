@@ -592,7 +592,6 @@ MonoBehaviour:
   InputActions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   timer: 2
   playerModel: {fileID: 173222}
-  playerObject: {fileID: 0}
 --- !u!65 &4693105754092391954
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -654,6 +653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DetectCollisions
   farmer: {fileID: 100046}
+  score: {fileID: 5913194042554367616, guid: be2e51feb80668e448c3dd702d7aac59, type: 3}
 --- !u!1 &106968
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,9 +25,18 @@ public class GameManager : MonoBehaviour
         confirmSairHUD.SetActive(true);
     }
 
+    public void MenuInicial()
+    {
+        SceneManager.LoadScene("cena");
+    }
+
     public void ConfirmSair()
     {
+        #if UNITY_EDITOR
         Debug.Log("saiu do jogo");
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
         Application.Quit();
+        #endif
     }
 }
