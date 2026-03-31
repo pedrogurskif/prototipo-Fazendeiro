@@ -68,6 +68,7 @@ public class PlayerController2 : MonoBehaviour
     void Update()
     {
         ultimateCD -= Time.deltaTime;
+        Debug.Log(ultimateCD);
         float horizontalInput = moveAction.ReadValue<Vector2>().x;
         transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
         if(transform.position.x < -xRange)
