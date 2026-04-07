@@ -17,7 +17,7 @@ public class DetectCollisions : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Animal")
+        if(other.CompareTag("Animal"))
         {
             if(gameObject.name.Contains("Pizza"))
             {
@@ -25,7 +25,7 @@ public class DetectCollisions : MonoBehaviour
                 Destroy(other.gameObject);
                 scoreText.Score(1);
             }
-            if(gameObject.tag == "Player")
+            else if(gameObject.CompareTag("Player"))
             {
                 player.Health(-1);
                 scoreText.Score(1);

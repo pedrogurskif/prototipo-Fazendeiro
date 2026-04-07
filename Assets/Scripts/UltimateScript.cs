@@ -4,12 +4,13 @@ public class UltimateScript : MonoBehaviour
 {
     public GameObject target, carhorn, healing;
     public float timer = 0;
-    private int help = 0;
+    public float despawnTime = 10;
+    private bool helped = false;
     private GameObject score;
     private ScoreText scoreText;
     void Start()
     {
-        Destroy(gameObject, 10);
+        Destroy(gameObject, despawnTime);
         transform.LookAt(target.transform.position);
         score = GameObject.Find("ScoreText");
         scoreText = score.GetComponent<ScoreText>();
@@ -39,17 +40,17 @@ public class UltimateScript : MonoBehaviour
 
     private void Hello()
     {
-        if(help < 1)
+        if(helped == false)
         {
             Instantiate(carhorn);
             Instantiate(healing, transform.position, Quaternion.identity);
-            help++;
+            helped = true;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Animal")
+        if(other.CompareTag("Animal"))
         {
             Destroy(other.gameObject);
         }

@@ -10,6 +10,7 @@ public class GhostPower : MonoBehaviour
     private InputAction powerAction;
     private InputAction fireAction;
     [SerializeField] private float timer = 2f;
+    private float maxGhostDuration = 2f;
     public GameObject playerModel;
     void Awake()
     {
@@ -32,7 +33,6 @@ public class GhostPower : MonoBehaviour
                 playerModel.SetActive(false);
                 timer -= Time.deltaTime;
                 fireAction.Disable();
-                print(timer);
             }
             if(!powerAction.IsPressed() || timer < 0f)
             {
@@ -47,13 +47,13 @@ public class GhostPower : MonoBehaviour
 
     void Regeneration()
     {
-        if(timer <= 2f)
+        if(timer <= maxGhostDuration)
         {
             timer += Time.deltaTime;
         }
-        if(timer > 2f)
+        if(timer > maxGhostDuration)
         {
-            timer = 2f;
+            timer = maxGhostDuration;
         }
     }
 }
