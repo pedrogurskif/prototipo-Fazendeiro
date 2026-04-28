@@ -12,6 +12,8 @@ public class GhostPower : MonoBehaviour
     [SerializeField] private float timer = 2f;
     private float maxGhostDuration = 2f;
     public GameObject playerModel;
+    private bool canGhost = true;
+
     void Awake()
     {
         powerAction = InputSystem.actions.FindAction("Power");
@@ -20,7 +22,21 @@ public class GhostPower : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(GhostCoroutine());
+       
+    }
+
+    void Update()
+    {
+        if(powerAction.WasPressedThisFrame() && canGhost)
+        {
+            StartCoroutine(StartGhost());
+        }
+
+        else if(powerAction.WasReleasedThisFrame())
+        {
+            StartCoroutine(EndGhost());
+        }
+
     }
 
     private IEnumerator GhostCoroutine()
@@ -39,21 +55,31 @@ public class GhostPower : MonoBehaviour
                 gameObject.tag = "Player";
                 playerModel.SetActive(true);
                 fireAction.Enable();
-                Regeneration();
             }
             yield return null;
         }
     }
 
-    void Regeneration()
+    private IEnumerator StartGhost()
     {
-        if(timer <= maxGhostDuration)
-        {
-            timer += Time.deltaTime;
-        }
-        if(timer > maxGhostDuration)
-        {
-            timer = maxGhostDuration;
-        }
+        gameObject.tag = "PlayerGhost";
+        playerModel.SetActive(false);
+        fireAction.Disable();
+        yield return new WaitForSeconds(maxGhostDuration);
+
+        StartCoroutine(EndGhost());
+    }
+
+    private IEnumerator EndGhost()
+    {
+        StopCoroutine(StartGhost());
+        canGhost = false;
+        gameObject.tag = "Player";
+        playerModel.SetActive(true);
+        fireAction.Enable();
+        yield return new WaitForSeconds(maxGhostDuration);
+
+        canGhost = true;
+        StopCoroutine(EndGhost());
     }
 }
